@@ -1,0 +1,49 @@
+body{
+    background-image: url("bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+    
+}
+.tag{
+    background-color: #9A863A;
+    border-bottom: 5px solid #242D2F ;
+    text-decoration: none;
+    padding:   10px 35px  10px 35px ;
+    margin-top: 200px;
+    margin-bottom: 100px;
+    border-radius: 30px;
+    color: white;
+    width: 350px;
+}
+.tag:before{
+    display: inline-block;
+    background-color: white;
+    content: "";
+    border-radius: 30px;
+    width: 5px;
+    height: 5px;
+    margin: 0px 5px 0px 0px;
+
+}
+.tag:hover{
+    text-decoration: none;
+    color: black;
+    border-bottom: 5px solid #A6ACAB ;
+}
+h1{
+    border: 5px solid white;
+    font-family: 'Rubik Glitch', cursive;
+    width: 800px;
+    color: white;
+    align-items: center;
+    margin-left: 350px;
+
+}
+h1:after{
+    display: block;
+    content: " A Computer Vision";
+    color: black;
+    background-color: white;
+
+}

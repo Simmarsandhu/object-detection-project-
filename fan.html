@@ -1,0 +1,108 @@
+<html>
+<head>
+	<title>object WEB APP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@700&display=swap" rel="stylesheet">
+<script src=" https://unpkg.com/ml5@latest/dist/ml5.min.js "></script>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.min.js"></script>
+
+</head>
+<body>
+    <h1>FAN</h1>
+    <label id="status"></label>
+    <button onclick="window.location='index.html'">LOGOUT</button>
+    <style>h1{
+        border: 5px solid white;
+        font-family: 'Rubik Glitch', cursive;
+        width: 800px;
+        color: white;
+        align-items: center;
+        margin-left: 350px;
+    
+    }
+    h1:after{
+        display: block;
+        content: " A Computer Vision";
+        color: black;
+        background-color: white;
+    }
+ body{
+    background-image: url("bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+    
+}
+button{
+    background-color: #DF2E38;
+    height: 40px;
+    width: 250px;
+    border-radius: 60px;
+    right: 10;
+    bottom: 10;
+    position: fixed;
+    border-bottom: 5px solid black;
+    border-right: 5px solid black;
+    border-top: transparent;
+    border-left: transparent;
+    color :white;
+    font-family: 'Exo 2', sans-serif;
+}
+button:hover{
+    
+    color: black;
+    border-color: #4D4D4D;
+}
+canvas{
+    margin-top: 70px;
+    margin-left: 10px;
+    border: 40px solid white;
+}
+    </style>
+    
+    <script type="application/javascript">
+        var status="";
+        function preload(){
+            img=loadImage("fan.jpg");
+         }
+        function setup(){
+            canvas= createCanvas(600,500);
+            canvas.center();
+            object_detection=ml5.objectDetector("cocossd",modelLoaded);
+            document.getElementById("status").innerHTML="STATUS : Detecting objects";
+        }
+        
+        function draw(){
+
+            image(img,0,0,600,500);
+        }
+        function modelLoaded(){
+            status= true
+            object_detection.detect(img,gotresults);
+
+        }
+        function gotresults(){
+            if(error){
+                console.log("error");
+            }
+            else{
+                console.log(results);
+            }
+        }
+    </script>
+</body>
+</html>
