@@ -24,6 +24,7 @@
 <body>
     <h1>KITCHEN</h1>
     <label id="status"></label>
+    
     <button onclick="window.location='index.html'">LOGOUT</button>
     <style>h1{
         border: 5px solid white;
@@ -89,18 +90,33 @@ canvas{
         function draw(){
 
             image(img,0,0,600,500);
+            if(status!=""){
+                
+                for(i=0;i<object.length;i++){
+                  confidence=floor(object[i].confidence*100)
+                  label=object[i].label;
+                  fill("red");
+                  text(label+" "+confidence+"%",object[i].x+10,object[i].y+10);
+                  noFill();
+                  stroke("red");
+                  rect(object[i].x,object[i].y,object[i].width,object[i].height);
+                  document.getElementById("status").innerHTML="STATUS = Objects Detected";
+                 
+                }
+              }
         }
         function modelLoaded(){
             status= true
             object_detection.detect(img,gotresults);
 
         }
-        function gotresults(){
+        function gotresults(error,results){
             if(error){
                 console.log("error");
             }
             else{
                 console.log(results);
+                object=results;
             }
         }
     </script>
